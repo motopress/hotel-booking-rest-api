@@ -25,10 +25,37 @@
         margin:0;
         background: #fafafa;
       }
+	  .mp-list {
+		line-height: 1.75;
+	  }
+	  .mp-list code {
+		  background: #ddd;
+		  padding: 0.1em 0.25em;
+		  border-radius: 2px;
+	  }
     </style>
   </head>
 
   <body>
+
+    <header class="swagger-ui">
+		<div class="wrapper">
+			<h1>MotoPress Hotel Booking plugin REST API documentation</h1>
+			<p>The Hotel Booking REST API is built on top of the WordPress REST API, ensuring a robust and secure code, thus helping you use our product in any application and create new experiences.</p>
+			<h2>How to start</h2>
+			<ol class="mp-list">
+				<li>Follow <a href="https://hbdemo.getmotopress.com/" rel="nofollow">this link</a> and click the <code>Start Free Trial</code> button to create your demo site.</li>
+				<li>Confirm the creation of your site via email.</li>
+				<li>Log in to your demo.</li>
+				<li>Create access tokens in the administration dashboard: <strong>Accommodation &gt; Settings &gt; Advanced</strong>.</li>
+				<li>Navigate to <a href="https://motopress.github.io/hotel-booking-rest-api/" rel="nofollow">Hotel Booking REST API documentation</a>.</li>
+				<li>Fill in the <code>demo-id</code> field using a part of URL value of your created demo site.<br>
+				<em>For example if your demo URL is hbdemo.getmotopress.com/<strong>z8p5rxxxx7xfeck</strong>/wp-admin, then <code>demo-id</code> is <strong><code>z8p5rxxxx7xfeck</code></strong>.</em></li>
+				<li>To log in, click the <code>Authorize</code> button and use the <strong><code>consumer_key</code></strong> and <strong><code>consumer_secret</code></strong> credentials.</li>
+			</ol>
+		</div>
+	</header>
+
     <div id="swagger-ui"></div>
 
     <script src="dist/swagger-ui-bundle.js" charset="UTF-8"> </script>
