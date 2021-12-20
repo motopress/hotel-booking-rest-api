@@ -4,36 +4,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Hotel Booking REST API documentation</title>
-    <link rel="stylesheet" type="text/css" href="dist/swagger-ui.css" />
-    <style>
-      html
-      {
-        box-sizing: border-box;
-        overflow: -moz-scrollbars-vertical;
-        overflow-y: scroll;
-      }
-
-      *,
-      *:before,
-      *:after
-      {
-        box-sizing: inherit;
-      }
-
-      body
-      {
-        margin:0;
-        background: #fafafa;
-      }
-	  .mp-list {
-		line-height: 1.75;
-	  }
-	  .mp-list code {
-		  background: #ddd;
-		  padding: 0.1em 0.25em;
-		  border-radius: 2px;
-	  }
-    </style>
+    <link rel="stylesheet" type="text/css" href="assets/swagger-ui/swagger-ui.css" />
+    <link rel="stylesheet" type="text/css" href="assets/styles.css" />
   </head>
 
   <body>
@@ -58,27 +30,39 @@
 
     <div id="swagger-ui"></div>
 
-    <script src="dist/swagger-ui-bundle.js" charset="UTF-8"> </script>
-    <script src="dist/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
-    <script>
-    window.onload = function() {
-      // Begin Swagger UI call region
-      const ui = SwaggerUIBundle({
-		url: "oas/mphb-v1.json",
-		dom_id: '#swagger-ui',
-		deepLinking: true,
-		presets: [
-			SwaggerUIBundle.presets.apis
-		],
-		plugins: [
-			SwaggerUIBundle.plugins.DownloadUrl
-		],
-		layout: "BaseLayout"
-	});
-      // End Swagger UI call region
+    <script src="assets/swagger-ui/swagger-ui-bundle.js" charset="UTF-8"> </script>
+    <script src="assets/swagger-ui/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
+    <script src="assets/scripts.js" charset="UTF-8"> </script>
+	<script>
+		window.onload = function () {
+			// Begin Swagger UI call region
+			const ui = SwaggerUIBundle({
+				url: "oas/mphb-v1.json",
+				dom_id: '#swagger-ui',
+				deepLinking: true,
+				presets: [
+					SwaggerUIBundle.presets.apis
+				],
+				plugins: [
+					SwaggerUIBundle.plugins.DownloadUrl
+				],
+				requestInterceptor: function (request) {
+					request.url = prepareRequestUrlInvalidParametersToValidParameters(request.url);
 
-      window.ui = ui;
-    };
-  </script>
+					return request;
+				},
+				layout: "BaseLayout"
+			});
+			// End Swagger UI call region
+
+			window.ui = ui;
+
+			// Generate placeholder value
+			document.querySelectorAll('input[data-variable="demo-id"]').forEach(function (item) {
+				placeholderCustom(item, item.value);
+			});
+			//# Generate placeholder value
+		};
+	</script>
   </body>
 </html>
