@@ -34,10 +34,11 @@
     <script src="assets/swagger-ui/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
     <script src="assets/scripts.js" charset="UTF-8"> </script>
 	<script>
+		const OAS_FILE_URL = "oas/mphb-v1.json";
 		window.onload = function () {
 			// Begin Swagger UI call region
 			const ui = SwaggerUIBundle({
-				url: "oas/mphb-v1.json",
+				url: OAS_FILE_URL,
 				dom_id: '#swagger-ui',
 				deepLinking: true,
 				presets: [
@@ -47,21 +48,24 @@
 					SwaggerUIBundle.plugins.DownloadUrl
 				],
 				requestInterceptor: function (request) {
-					request.url = prepareRequestUrlInvalidParametersToValidParameters(request.url);
+					if (OAS_FILE_URL !== request.url) {
+						request.url = prepareRequestUrlInvalidParametersToValidParameters(request.url);
+					}
 
 					return request;
+				},
+				onComplete: function () {
+					// Generate placeholder value
+					document.querySelectorAll('input[data-variable="demo-id"]').forEach(function (item) {
+						placeholderCustom(item, item.value);
+					});
+					//# Generate placeholder value
 				},
 				layout: "BaseLayout"
 			});
 			// End Swagger UI call region
 
 			window.ui = ui;
-
-			// Generate placeholder value
-			document.querySelectorAll('input[data-variable="demo-id"]').forEach(function (item) {
-				placeholderCustom(item, item.value);
-			});
-			//# Generate placeholder value
 		};
 	</script>
   </body>
